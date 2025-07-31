@@ -1,0 +1,417 @@
+:root {
+    --primary-color: #2ecc71;
+    --secondary-color: #f39c12;
+    --dark-color: #2c3e50;
+    --light-color: #ecf0f1;
+    --text-color: #34495e;
+    --gradient: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(46, 204, 113, 0.9), rgba(39, 174, 96, 0.9));
+    color: white;
+    padding: 60px 0 40px;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.hero-title .highlight {
+    color: var(--secondary-color);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.hero-subtitle {
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    margin-bottom: 40px;
+    opacity: 0.95;
+}
+
+.video-container {
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.hero-video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Proof Bar */
+.proof-bar {
+    background: var(--dark-color);
+    color: white;
+    padding: 40px 0;
+}
+
+.proof-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.proof-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.proof-icon {
+    font-size: 2.5rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.proof-text {
+    flex: 1;
+}
+
+.proof-text strong {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.proof-text span {
+    color: var(--primary-color);
+    font-size: 0.95rem;
+}
+
+/* Philosophy Section */
+.philosophy {
+    padding: 80px 0;
+    background: var(--light-color);
+}
+
+.philosophy h2 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--dark-color);
+}
+
+.philosophy-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.philosophy-content p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+/* CTA Button */
+.cta-button {
+    display: inline-block;
+    background: var(--gradient);
+    color: white;
+    padding: 18px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(46, 204, 113, 0.4);
+}
+
+.cta-button.secondary {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    box-shadow: none;
+}
+
+.cta-button.secondary:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.cta-button.large {
+    padding: 22px 50px;
+    font-size: 1.3rem;
+}
+
+/* Pulse Animation */
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4); }
+    50% { box-shadow: 0 4px 30px rgba(46, 204, 113, 0.6); }
+    100% { box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4); }
+}
+
+/* Testimonials */
+.testimonials {
+    padding: 80px 0;
+    background: white;
+}
+
+.testimonials h2 {
+    text-align: center;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    margin-bottom: 50px;
+    color: var(--dark-color);
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.testimonial-video {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.testimonial-player {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Credentials */
+.credentials {
+    padding: 80px 0;
+    background: var(--light-color);
+}
+
+.credentials h2 {
+    text-align: center;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    margin-bottom: 50px;
+    color: var(--dark-color);
+}
+
+.credentials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.credential-item {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    font-size: 1.1rem;
+    color: var(--text-color);
+    border-left: 4px solid var(--primary-color);
+}
+
+/* Pricing */
+.pricing {
+    padding: 80px 0;
+    background: white;
+}
+
+.pricing h2 {
+    text-align: center;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    margin-bottom: 50px;
+    color: var(--dark-color);
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.pricing-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.pricing-card:hover {
+    transform: translateY(-5px);
+}
+
+.pricing-card.popular {
+    border: 3px solid var(--primary-color);
+    transform: scale(1.05);
+}
+
+.pricing-card.popular:hover {
+    transform: scale(1.08) translateY(-5px);
+}
+
+.popular-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary-color);
+    color: white;
+    padding: 5px 20px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.pricing-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: var(--dark-color);
+}
+
+.price {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+}
+
+.price span {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+.pricing-card ul {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.pricing-card li {
+    padding: 10px 0;
+    color: var(--text-color);
+    border-bottom: 1px solid #eee;
+}
+
+.pricing-card li:last-child {
+    border-bottom: none;
+}
+
+/* Final CTA */
+.final-cta {
+    padding: 100px 0;
+    background: var(--gradient);
+    text-align: center;
+    color: white;
+}
+
+.final-cta h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 20px;
+}
+
+.final-cta p {
+    font-size: 1.3rem;
+    margin-bottom: 40px;
+    opacity: 0.95;
+}
+
+/* Footer */
+.footer {
+    background: var(--dark-color);
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.footer p {
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+/* WhatsApp Float */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #25d366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 30px rgba(0,0,0,0.4);
+}
+
+.whatsapp-float svg {
+    width: 30px;
+    height: 30px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero {
+        padding: 40px 0 30px;
+    }
+    
+    .proof-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .pricing-card.popular {
+        transform: scale(1);
+    }
+    
+    .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+    }
+}
