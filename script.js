@@ -5,9 +5,31 @@ const WHATSAPP_NUMBER = '5562999303824'; // Updated number
 function sendWhatsApp(message) {
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
-    window.open(whatsappURL, '_blank');
     
-    // Track conversion event (if you add analytics later)
+    // Track Facebook Pixel events
+    if (typeof fbq !== 'undefined') {
+        // Always track Contact event
+        fbq('track', 'Contact', {
+            content_name: 'WhatsApp Click',
+            content_category: 'Tennis Kids',
+            value: 0,
+            currency: 'BRL'
+        });
+        
+        // Track InitiateCheckout for pricing-related messages
+        if (message.toLowerCase().includes('plano') || 
+            message.toLowerCase().includes('interesse') || 
+            message.toLowerCase().includes('agendar')) {
+            fbq('track', 'InitiateCheckout', {
+                content_name: 'Tennis Kids Plan',
+                content_category: 'Course',
+                value: message.includes('2x') ? 450 : 250,
+                currency: 'BRL'
+            });
+        }
+    }
+    
+    window.open(whatsappURL, '_blank');
     console.log('WhatsApp click:', message);
 }
 
