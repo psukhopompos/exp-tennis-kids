@@ -39,12 +39,23 @@ body {
 .logo {
     max-width: 600px;
     margin: 0 auto;
+    text-align: center;
 }
 
-.logo svg {
-    width: 100%;
+.logo img {
     height: auto;
     display: block;
+    margin: 0 auto;
+}
+
+.logo-desktop {
+    width: 100%;
+    max-width: 400px;
+}
+
+.logo-mobile {
+    display: none;
+    width: 60px;
 }
 
 /* Hero Section */
@@ -425,9 +436,12 @@ body {
         padding: 0 10px;
     }
     
-    .logo svg {
-        height: 40px;
-        width: auto;
+    .logo-desktop {
+        display: none;
+    }
+    
+    .logo-mobile {
+        display: block !important;
     }
     
     .hero {
