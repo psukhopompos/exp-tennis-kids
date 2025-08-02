@@ -44,11 +44,11 @@ body {
 
 .logo img {
     height: auto;
-    display: block;
     margin: 0 auto;
 }
 
 .logo-desktop {
+    display: block;
     width: 100%;
     max-width: 400px;
 }
@@ -56,6 +56,7 @@ body {
 .logo-mobile {
     display: none;
     width: 60px;
+    max-width: 60px;
 }
 
 /* Hero Section */
@@ -437,11 +438,14 @@ body {
     }
     
     .logo-desktop {
-        display: none;
+        display: none !important;
     }
     
     .logo-mobile {
         display: block !important;
+        margin: 0 auto;
+        width: 50px;
+        max-width: 50px;
     }
     
     .hero {
