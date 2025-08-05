@@ -42,6 +42,27 @@ function sendWhatsApp(message) {
     console.log('WhatsApp click:', message);
 }
 
+// Track time on page
+let startTime = Date.now();
+let timeTracked30s = false;
+
+function trackTimeOnPage() {
+    if (typeof fbq === 'undefined' || timeTracked30s) return;
+    
+    const timeSpent = (Date.now() - startTime) / 1000; // in seconds
+    
+    if (timeSpent >= 30 && !timeTracked30s) {
+        fbq('trackCustom', 'EngagedVisitor', {
+            time_spent: '30+ seconds',
+            content_category: 'Tennis Kids'
+        });
+        timeTracked30s = true;
+    }
+}
+
+// Check every 5 seconds
+setInterval(trackTimeOnPage, 5000);
+
 // Hero stories rotation
 document.addEventListener('DOMContentLoaded', function() {
     const slides = document.querySelectorAll('.story-slide');
