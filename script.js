@@ -8,23 +8,32 @@ function sendWhatsApp(message) {
     
     // Track Facebook Pixel events
     if (typeof fbq !== 'undefined') {
-        // Always track Contact event
-        fbq('track', 'Contact', {
-            content_name: 'WhatsApp Click',
-            content_category: 'Tennis Kids',
-            value: 0,
-            currency: 'BRL'
-        });
-        
-        // Track InitiateCheckout for pricing-related messages
-        if (message.toLowerCase().includes('plano') || 
-            message.toLowerCase().includes('interesse') || 
-            message.toLowerCase().includes('agendar')) {
-            fbq('track', 'InitiateCheckout', {
-                content_name: 'Tennis Kids Plan',
-                content_category: 'Course',
+        // Track based on message content
+        if (message.toLowerCase().includes('aula experimental') || 
+            message.toLowerCase().includes('aula grátis') ||
+            message.toLowerCase().includes('vaga')) {
+            // Free trial = Lead
+            fbq('track', 'Lead', {
+                content_name: 'Free Trial Request',
+                content_category: 'Tennis Kids',
+                value: 0,
+                currency: 'BRL'
+            });
+        } else if (message.toLowerCase().includes('plano') || 
+                   message.toLowerCase().includes('1x por semana') ||
+                   message.toLowerCase().includes('2x por semana')) {
+            // Pricing inquiry = AddToCart
+            fbq('track', 'AddToCart', {
+                content_name: 'Pricing Inquiry',
+                content_category: 'Tennis Kids',
                 value: message.includes('2x') ? 450 : 250,
                 currency: 'BRL'
+            });
+        } else {
+            // Any other message = ViewContent (they're engaged)
+            fbq('track', 'ViewContent', {
+                content_name: 'WhatsApp Engagement',
+                content_category: 'Tennis Kids'
             });
         }
     }
@@ -55,11 +64,61 @@ document.addEventListener('DOMContentLoaded', function() {
             if (heroVideo.muted) {
                 heroVideo.muted = false;
                 videoContainer.classList.add('sound-on');
+                // Track video engagement
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'VideoEngagement', {
+                        action: 'unmute',
+                        content_name: 'Hero Video'
+                    });
+                }
             } else {
                 heroVideo.muted = true;
                 videoContainer.classList.remove('sound-on');
             }
         });
+    }
+    
+    // Track scroll depth
+    let scrollTracked = {
+        pricing: false,
+        testimonials: false
+    };
+    
+    window.addEventListener('scroll', function() {
+        if (typeof fbq === 'undefined') return;
+        
+        // Track when they see pricing
+        if (!scrollTracked.pricing) {
+            const pricingSection = document.querySelector('.pricing');
+            if (pricingSection && isElementInViewport(pricingSection)) {
+                fbq('track', 'ViewContent', {
+                    content_name: 'Pricing Section',
+                    content_category: 'Tennis Kids'
+                });
+                scrollTracked.pricing = true;
+            }
+        }
+        
+        // Track when they see testimonials
+        if (!scrollTracked.testimonials) {
+            const testimonialsSection = document.querySelector('.testimonials');
+            if (testimonialsSection && isElementInViewport(testimonialsSection)) {
+                fbq('trackCustom', 'ViewTestimonials', {
+                    content_name: 'Parent Testimonials'
+                });
+                scrollTracked.testimonials = true;
+            }
+        }
+    });
+    
+    function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
     }
 
     // Add smooth scroll behavior
