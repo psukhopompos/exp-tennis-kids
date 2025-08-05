@@ -45,6 +45,22 @@ document.addEventListener('DOMContentLoaded', function() {
             slides[currentSlide].classList.add('active');
         }, 6000); // Change story every 6 seconds
     }
+    
+    // Click to unmute video functionality
+    const heroVideo = document.getElementById('heroVideo');
+    const videoContainer = document.querySelector('.video-container');
+    
+    if (heroVideo && videoContainer) {
+        videoContainer.addEventListener('click', function() {
+            if (heroVideo.muted) {
+                heroVideo.muted = false;
+                videoContainer.classList.add('sound-on');
+            } else {
+                heroVideo.muted = true;
+                videoContainer.classList.remove('sound-on');
+            }
+        });
+    }
 
     // Add smooth scroll behavior
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
