@@ -33,8 +33,19 @@ function sendWhatsApp(message) {
     console.log('WhatsApp click:', message);
 }
 
-// Smooth scroll for anchor links
+// Hero stories rotation
 document.addEventListener('DOMContentLoaded', function() {
+    const slides = document.querySelectorAll('.story-slide');
+    let currentSlide = 0;
+    
+    if (slides.length > 1) {
+        setInterval(() => {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }, 6000); // Change story every 6 seconds
+    }
+
     // Add smooth scroll behavior
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
